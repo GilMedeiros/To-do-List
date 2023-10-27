@@ -13,7 +13,15 @@ class TaskRepositorie{
         } catch(e) {
             throw new Error(e);           
         }
-        
+    };
+    
+    async getAll(){
+        try {
+            const response = await taskModel.find();
+            return response;
+        } catch (e) {
+            throw new Error(e);
+        }
     }
 }
 

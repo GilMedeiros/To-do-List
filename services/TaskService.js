@@ -8,7 +8,16 @@ class TaskService{
            const response = await TaskRepositorie.saveTask(object);
            return response;
         } catch (e) {
-             throw new Error(e)
+             throw new Error(e);
+        }
+    }
+
+    async getAll(){
+        try {
+            const response = await TaskRepositorie.getAll();
+            return response;
+        } catch (e) {
+            throw new Error(e);
         }
     }
 }

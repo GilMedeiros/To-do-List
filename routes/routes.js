@@ -5,14 +5,18 @@ const router = express.Router();
 const TaskController = require("../controllers/TaskController");
 
 //GET
-router.get("/tasks", (req,res) => {
-    res.send('Rota principal')
+router.get("/tasks", async (req,res) => {
+    try {
+        await TaskController.getAllTasks().then((response) => {res.json(response)});
+    } catch (error) {
+        res.send({error:e.message});
+    }
 });
 
 //POST
-router.post("/taskes/new", async (req,res) => {
+router.post("/tasks/new", async (req,res) => {
     try {
-        await TaskController.new(req.body).then((response) => {res.json(response)});
+        await TaskController.newTask(req.body).then((response) => {res.json(response)});
     } catch (e) {
         res.send({error:e.message});        
     }

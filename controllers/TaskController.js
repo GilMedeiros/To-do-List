@@ -3,7 +3,7 @@ const validateKeys = require("../middlewares/validateSchemaKeys");
 
 class Task {
     //Create new Task
-    async new(object){
+    async newTask(object){
 
         //Verificando se os campos obrigatórios estão válidos
         if(object.createdBy === undefined || object.title === undefined){
@@ -26,9 +26,16 @@ class Task {
         }else{
             throw new Error("UserID and title must be a String");
         }
-        
     }
 
+    async getAllTasks(){
+        try {
+            const response = await TaskService.getAll();
+            return response;
+        } catch (e) {
+            throw new Error(e);
+        }
+    }
 }
 
 module.exports = new Task();
